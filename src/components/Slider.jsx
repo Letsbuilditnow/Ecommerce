@@ -9,7 +9,6 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
- 
 `;
 const Arrow = styled.div`
   width: 50px;
@@ -31,8 +30,8 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
-  transition:all 1.5s ease;
-  transform: translateX(${props=>props.sliderIndex*-100}vw);
+  transition: all 1.5s ease;
+  transform: translateX(${(props) => props.sliderIndex * -100}vw);
 `;
 const Slide = styled.div`
   width: 100vw;
@@ -72,10 +71,10 @@ const Button = styled.button`
 export default function Slider() {
   const [sliderIndex, setSliderIndex] = useState(0);
   function handleClick(direction) {
-    if (direction=="left"){
-setSliderIndex(sliderIndex >0 ? sliderIndex-1 :2)
-    }else{
-        setSliderIndex(sliderIndex <2 ? sliderIndex +1:0)
+    if (direction == "left") {
+      setSliderIndex(sliderIndex > 0 ? sliderIndex - 1 : 2);
+    } else {
+      setSliderIndex(sliderIndex < 2 ? sliderIndex + 1 : 0);
     }
   }
   return (
@@ -89,22 +88,20 @@ setSliderIndex(sliderIndex >0 ? sliderIndex-1 :2)
         <ArrowLeftOutlined />
       </Arrow>
       <Wrapper sliderIndex={sliderIndex}>
-        {sliderItems.map((item)=>{
-           return(
-
-               <Slide bg={item.bg}>
-          <ImageContainer>
-            <Image src={item.img}/>
-          </ImageContainer>
-          <InfoContainer>
-            <Title>{item.title} </Title>
-            <Desc>{item.desc}</Desc>
-            <Button>SHOW NOW </Button>
-          </InfoContainer>
-        </Slide>
-        )
+        {sliderItems.map((item) => {
+          return (
+            <Slide bg={item.bg} key={item.id}>
+              <ImageContainer>
+                <Image src={item.img} />
+              </ImageContainer>
+              <InfoContainer>
+                <Title>{item.title} </Title>
+                <Desc>{item.desc}</Desc>
+                <Button>SHOW NOW </Button>
+              </InfoContainer>
+            </Slide>
+          );
         })}
-        
       </Wrapper>
       <Arrow
         direction="right"
