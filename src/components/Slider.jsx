@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import { sliderItems } from "../data";
+import {mobile} from "./responsive";
 
 const Container = styled.div`
   width: 100%;
@@ -9,6 +10,8 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
+ ${mobile({display:"none"})}
+
 `;
 const Arrow = styled.div`
   width: 50px;
@@ -71,7 +74,7 @@ const Button = styled.button`
 export default function Slider() {
   const [sliderIndex, setSliderIndex] = useState(0);
   function handleClick(direction) {
-    if (direction == "left") {
+    if (direction === "left") {
       setSliderIndex(sliderIndex > 0 ? sliderIndex - 1 : 2);
     } else {
       setSliderIndex(sliderIndex < 2 ? sliderIndex + 1 : 0);
